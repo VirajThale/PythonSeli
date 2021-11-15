@@ -8,20 +8,25 @@ class Login:
     button_login_xpath = "//input[@name='btn_login']"
     warning_text_xpath = "//*[@id='msg_box']"
 
+    username = "asb@gamil.com"
+    Password = "Asbc@123456"
+    BaseURL = "https://www.simplilearn.com"
+
     def __init__(self, driver):
         self.driver = driver
 
-    def UserName(self, username):
+    def UserName(self):
+        self.driver.get(self.BaseURL)
         self.driver.find_element(By.CLASS_NAME, self.button_login_ClassName).click()
-        self.driver.find_element(By.NAME, self.textbox_email_name).send_keys(username)
+        self.driver.find_element(By.NAME, self.textbox_email_name).send_keys(self.username)
 
-    def User_Password(self, password):
-        self.driver.find_element(By.XPATH, self.textbox_password_xpath).send_keys(password)
+    def User_Password(self):
+        self.driver.find_element(By.XPATH, self.textbox_password_xpath).send_keys(self.Password)
 
     def LoginButton(self):
         self.driver.find_element(By.XPATH, self.button_login_xpath).click()
 
     def AssertCheck(self):
         # print(self.driver.find_element(By.XPATH, self.warning_text_xpath).text)
-        msg = self.driver.find_element(By.XPATH, self.warning_text_xpath).text
-        return msg
+        return self.driver.find_element(By.XPATH, self.warning_text_xpath).text
+        # return msg
